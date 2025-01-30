@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekiro god isshin mod</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            padding: 50px;
+            position: relative;
+        }
+        h1 {
+            color: #ff3366;
+            font-size: 2.5em;
+        }
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 50% 80%, 20% 100%, 0% 40%);
+            animation: float 4s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(0.5); opacity: 0; }
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 600px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .slide {
+            display: none;
+            font-size: 1.5em;
+            padding: 20px;
+        }
+        .active {
+            display: block;
+        }
+        .choice-btn {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .yes-btn {
+            background-color: #ff3366;
+            color: white;
+        }
+        .no-btn {
+            background-color: #cccccc;
+            color: black;
+            position: absolute;
+        }
+        .bunny-image {
+            width: 150px; /* Rozmiar obrazka */
+            margin-bottom: 20px;
+        }
+        /* Fałszywy link z przyciskiem podobnym do Google Drive */
+        .fake-link {
+            display: inline-block;
+            background-color: #f1f1f1;
+            color: #1a73e8;
+            padding: 10px 30px;
+            border-radius: 4px;
+            font-size: 1.2em;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+        .fake-link:hover {
+            background-color: #e8e8e8;
+        }
+        /* Tło szare dla pierwszego slajdu */
+        .first-slide {
+            background-color: #555555; /* Ciemniejsze tło dla pierwszego slajdu */
+            color: white; /* Zmieniamy kolor tekstu na biały */
+        }
+        /* Ukrywanie przycisku "Dalej" na ostatnich slajdach */
+        .hide-next-btn {
+            display: none;
+        }
+        /* Animacja konfetti */
+        @keyframes confetti-fall {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Dodatkowe style dla fajerwerków na slajdzie 5 */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: hsl(0, 100%, 50%);
+            border-radius: 50%;
+            animation: confetti-fall 10s ease-in infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    
+    <div class="slideshow-container">
+        <!-- Slajd 1: Fałszywy link i ciemne tło -->
+        <div class="slide active first-slide">
+            <a href="#" class="fake-link" onclick="fakeLinkClicked()">sekiro god isshin mod.rar</a>
+        </div>
+        
+        <!-- Slajd 2 -->
+        <div class="slide">
+            <img src="params/chr/parts/bun_07.png" alt="Bunny Sticker 07" class="bunny-image">
+            Nie bedzie jakieś sekiro ważniejsze od ciebie. Jesteś naprawde cudowna oraz jesteś osobą na której mi bardzo zależy, dlatego też chcialem się spytać czy zostaniesz moją walentynką 🥹💝<br>
+            <button class="choice-btn yes-btn" onclick="nextSlide()">Dalej ➡️</button>
+        </div>
+        
+        <!-- Slajd 3 -->
+        <div class="slide">
+            <img src="params/chr/parts/bun_06.png" alt="Bunny Sticker 06" class="bunny-image">
+            jeśli byś miala jeszcze jakieś wątpliwości to pozwól że je rozwieje 🥰. Oto dlaczego powinnaś się zgodzić: 
+1. Jesteś wyjątkowa, cudowna i kochana oraz osobą z którą mam naprawde super wspomnienia i chce sprawić zeby to było też tak samo wyjątkowe i miłe do wspominania dlatego też ja ze wszystkich sił postaram sie taki być jak ty a nawet jeszcze lepszy 😘
+2. Sprawie żeby ten dzień dla ciebie był naprawde wyjątkowy 💖
+3. Bardzo mi zależy dlatego też bardzo będę się starał żebyś była szczęśliwa i ani na chwilę smutna 🥺<br>
+            <button class="choice-btn yes-btn" onclick="nextSlide()">Dalej ➡️</button>
+        </div>
+        
+        <!-- Slajd 4 -->
+        <div class="slide">
+            <img src="params/chr/parts/bun_06.png" alt="Bunny Sticker 06" class="bunny-image">
+            Czy przejmujesz zaproszenie i chciałabyś zostać moją walentynką? 🥺💝<br><br>
+            <button class="choice-btn yes-btn" onclick="nextSlide()">Tak</button>
+            <button class="choice-btn no-btn" onmouseover="moveNoButton()">Nie</button>
+        </div>
+        
+        <!-- Slajd 5 (Ostatni): Końcowy slajd z fajerwerkami -->
+        <div class="slide">
+            <img src="params/chr/parts/bun_08.png" alt="Bunny Sticker 08" class="bunny-image">
+            TAK CIĘ UWIELBIAM I JESTEŚ NAPRAWDĘ SUPER OSOBĄ 🥰<br>
+            Naprawdę jest mi niesamowicie miło i tak się cieszę żę się zgodziłaś. Naprawdę będę się bardzo starał żeby ten dzień był super 🌹💐
+        </div>
+    </div>
+
+    <script>
+        // Funkcja wystrzeliwująca konfetti z fajerwerkami po kliknięciu fałszywego linku
+        function fakeLinkClicked() {
+            createConfetti();  // Tworzymy konfetti
+            setTimeout(nextSlide, 500);  // Po 0.5 sekundy przejdź do pierwszego slajdu
+        }
+
+        // Funkcja do wystrzeliwania konfetti
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                let confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.top = Math.random() * window.innerHeight + 'px';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = 'hsl(' + Math.random() * 360 + ', 100%, 50%)';
+                confetti.style.borderRadius = '50%';
+                document.body.appendChild(confetti);
+
+                // Animacja spadania (teraz 10 sekund)
+                confetti.style.animation = `confetti-fall 10s ease-in infinite`;
+
+                setTimeout(() => confetti.remove(), 10000);  // Usuwanie po 10 sekundach
+            }
+        }
+
+        // Funkcja do przejścia do kolejnego slajdu
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+            if (currentSlide === 4) {  // Na slajdzie 5 (indeks 4) wyświetlamy konfetti
+                createConfetti();
+            }
+        }
+
+        function moveNoButton() {
+            const noButton = document.querySelector('.no-btn');
+            // Ograniczamy maksymalną odległość przemieszczenia
+            const maxX = window.innerWidth - noButton.offsetWidth - 800;  // Ograniczenie do 100px od prawej krawędzi
+            const maxY = window.innerHeight - noButton.offsetHeight - 500;  // Ograniczenie do 100px od dolnej krawędzi
+            const x = Math.random() * maxX;  // Losowanie pozycji X
+            const y = Math.random() * maxY;  // Losowanie pozycji Y
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+    </script>
+</body>
+</html>
